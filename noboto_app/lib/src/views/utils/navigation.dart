@@ -4,49 +4,75 @@ import 'package:noboto_app/src/views/utils/app_icons.dart';
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size.width,
-      height: 80,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Column(children: [
-          IconButton(
-            icon: Icon(AppIcons.exchange_alt),
-            onPressed: () {},
-          ),
-          Text('Trueques')
-        ]),
-        Column(children: [
-          IconButton(
-            icon: Icon(AppIcons.gift),
-            onPressed: () {},
-          ),
-          Text('Donaciones')
-        ]),
-        Container(
-          width: size.width * 0.2,
-        ),
-        Column(children: [
-          IconButton(
-            icon: Icon(AppIcons.hand_holding),
-            onPressed: () {},
-          ),
-          Text('Solicitudes')
-        ]),
-        Column(children: [
-          IconButton(
-            icon: Icon(Icons.messenger_rounded),
-            onPressed: () {},
-          ),
-          Text('Mensajes')
-        ])
-      ]),
+    final Size size = MediaQuery.of(context).size;
+    return Stack(
+      children: [
+        Positioned(
+            bottom: 0,
+            left: 0,
+            child: Container(
+              width: size.width,
+              height: 80,
+              // color: Colors.white,
+              child: Stack(children: [
+                CustomPaint(
+                  size: Size(size.width, 80),
+                  painter: BNBCustomPainter(),
+                ),
+                Center(
+                    heightFactor: 0.6,
+                    child: FloatingActionButton(
+                      onPressed: () {},
+                      backgroundColor: Color(0xFF1F3A83), //#1F3A83
+                      child: Icon(Icons.add),
+                      elevation: 0.1,
+                    )),
+                Container(
+                  width: size.width,
+                  height: 80,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(children: [
+                          IconButton(
+                            icon: Icon(AppIcons.exchange_alt),
+                            onPressed: () {},
+                          ),
+                          Text('Trueques')
+                        ]),
+                        Column(children: [
+                          IconButton(
+                            icon: Icon(AppIcons.gift),
+                            onPressed: () {},
+                          ),
+                          Text('Donaciones')
+                        ]),
+                        Container(
+                          width: size.width * 0.2,
+                        ),
+                        Column(children: [
+                          IconButton(
+                            icon: Icon(AppIcons.hand_holding),
+                            onPressed: () {},
+                          ),
+                          Text('Solicitudes')
+                        ]),
+                        Column(children: [
+                          IconButton(
+                            icon: Icon(Icons.messenger_rounded),
+                            onPressed: () {},
+                          ),
+                          Text('Mensajes')
+                        ])
+                      ]),
+                )
+              ]),
+            ))
+      ],
     );
   }
 }
