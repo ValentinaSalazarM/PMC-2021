@@ -8,19 +8,25 @@ class PostList extends StatefulWidget {
 }
 
 class _PostListState extends State<PostList> {
-  List<Post> posts = [];
+  List<Post> posts = [
+    Post(
+      id: "1",
+      active: true,
+      object: Object(
+        id: "1",
+        name: "Libro de La Peste",
+        description: "Libro",
+        imageUrls: ["https://1.bp.blogspot.com/-NwxXKFhXQX4/WK922_LuoaI/AAAAAAAAC8Q/LbCfS2HqStA7TMVgjKDekmobS9IBv_rHQCLcB/s1600/DSC00346.jpg"]
+      ),
+    )
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Trueqes"),
-      ),
-      body: ListView.builder(
+    return ListView.builder(
         itemCount: posts.length,
         itemBuilder: (BuildContext context, int index) {
           return PostCard(posts[index]);
         },
-      ),
-    );
+      );
   }
 }
