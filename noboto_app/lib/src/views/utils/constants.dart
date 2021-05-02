@@ -36,7 +36,7 @@ const String kAddressNullError = "Please Enter your address";
 
 final otpInputDecoration = InputDecoration(
   contentPadding:
-      EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15) ?? 0.0),
+      EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),
   border: outlineInputBorder(),
   focusedBorder: outlineInputBorder(),
   enabledBorder: outlineInputBorder(),
@@ -44,7 +44,7 @@ final otpInputDecoration = InputDecoration(
 
 OutlineInputBorder outlineInputBorder() {
   return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(getProportionateScreenWidth(15) ?? 0.0),
+    borderRadius: BorderRadius.circular(getProportionateScreenWidth(15)),
     borderSide: BorderSide(color: kTextColor),
   );
 }
