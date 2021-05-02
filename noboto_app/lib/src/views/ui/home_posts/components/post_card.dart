@@ -33,7 +33,8 @@ class PostCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 0.0, horizontal: 10.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,21 +42,13 @@ class PostCard extends StatelessWidget {
                       Text(
                         post.product!.name!,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       Row(
-                        children: [
-                          Icon(Icons.sync_alt),
-                          Text("Libro")
-                        ],
+                        children: [Icon(Icons.sync_alt), Text("Libro")],
                       ),
                       Row(
-                        children: [
-                          Icon(Icons.place),
-                          Text("500 m de Casa")
-                        ],
+                        children: [Icon(Icons.place), Text("500 m de Casa")],
                       )
                     ],
                   ),
