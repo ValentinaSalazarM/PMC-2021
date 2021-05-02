@@ -1,14 +1,8 @@
-import 'dart:html';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/business_logic/models/models.dart';
-import 'package:noboto_app/src/views/utils/app_icons.dart';
-
-
 
 class PostCard extends StatelessWidget {
-
   final Post post;
 
   PostCard(this.post);
@@ -16,7 +10,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       margin: EdgeInsets.all(5),
       elevation: 10,
       child: ClipRRect(
@@ -24,23 +18,79 @@ class PostCard extends StatelessWidget {
         child: Column(
           children: [
             CachedNetworkImage(
-                imageUrl: post.object!.imageUrls![0],
+                imageUrl: post.product!.imageUrls![0],
+                imageBuilder: (context, imageProvider) => Container(
+                      height: 150.0,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: imageProvider,
+                              alignment: FractionalOffset.topCenter,
+                              fit: BoxFit.cover)),
+                    ),
                 placeholder: (context, url) => CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Icon(Icons.error)),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  children: [
-                    Text(post.object!.name!,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),),
-                    Row(
-                      children: [
-
-                      ],
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        post.product!.name!,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.sync_alt),
+                          Text("Libro")
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.place),
+                          Text("500 m de Casa")
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      CachedNetworkImage(
+                          imageUrl: post.user!.profilePictureUrl!,
+                          imageBuilder: (context, imageProvider) => Container(
+                                width: 50.0,
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover)),
+                              ),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error)),
+                      Center(
+                        child: Text(post.user!.name!),
+                      ),
+                      Center(
+                          child: Row(
+                        children: [
+                          Icon(Icons.star),
+                          Center(child: Text("${post.user!.rating}")),
+                        ],
+                      ))
+                    ],
+                  ),
                 )
               ],
             )
