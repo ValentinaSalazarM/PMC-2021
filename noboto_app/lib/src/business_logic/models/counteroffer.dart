@@ -3,14 +3,14 @@ part of models;
 class Counteroffer {
   String? id;
   String? message;
-  Object? object;
+  Product? product;
   User? user;
   Post? post;
 
   Counteroffer({
     this.id,
     this.message,
-    this.object,
+    this.product,
     this.user,
     this.post,
   });
@@ -18,8 +18,8 @@ class Counteroffer {
   Counteroffer.fromJson(Map<String, dynamic> json) {
     id = json['id'] as String;
     message = json['message'] as String;
-    object = json['object'] != null
-        ? Object.fromJson(json['object'] as Map<String, dynamic>)
+    product = json['object'] != null
+        ? Product.fromJson(json['object'] as Map<String, dynamic>)
         : null;
     user = json['user'] != null
         ? User.fromJson(json['user'] as Map<String, dynamic>)
@@ -33,7 +33,7 @@ class Counteroffer {
     Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['message'] = message;
-    if (object != null) data['object'] = object!.toJson();
+    if (product != null) data['object'] = product!.toJson();
     if (user != null) data['user'] = user!.toJson();
     if (post != null) data['post'] = post!.toJson();
     return data;

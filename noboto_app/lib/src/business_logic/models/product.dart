@@ -1,6 +1,6 @@
 part of models;
 
-class Object {
+class Product {
   String? id;
   String? name;
   String? description;
@@ -11,7 +11,7 @@ class Object {
   // Debería objeto tener la imagen? Yo opino que sí
   List<String>? imageUrls;
 
-  Object(
+  Product(
       {this.id,
         this.name,
       this.description,
@@ -21,7 +21,7 @@ class Object {
       this.intrinsicValue,
       this.imageUrls});
 
-  Object.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     id = json['id'] as String;
     name = json['name'] as String;
     description = json['description'] as String;
