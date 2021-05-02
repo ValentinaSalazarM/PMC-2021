@@ -14,7 +14,7 @@ class _HomePostsState extends State<HomePosts> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Trueqes"),
+          title: Text("Trueques"),
         ),
         backgroundColor: Colors.white,
         body: Column(
