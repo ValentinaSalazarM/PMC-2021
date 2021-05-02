@@ -9,6 +9,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white10, body: BottomNavigation());
+    return Scaffold(
+      backgroundColor: Colors.white,
+      // body: cada uno ponga aquí lo que está desarrollando mientras
+      bottomNavigationBar: BottomNavigation(),
+    );
   }
 }
