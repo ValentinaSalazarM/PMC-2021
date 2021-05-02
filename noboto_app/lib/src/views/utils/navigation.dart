@@ -39,14 +39,15 @@ class BottomNavigation extends StatelessWidget {
                       children: [
                         Column(children: [
                           IconButton(
-                            icon: Icon(AppIcons.exchange_alt),
+                            icon:
+                                Icon(AppIcons.exchange_alt, color: Colors.grey),
                             onPressed: () {},
                           ),
                           Text('Trueques')
                         ]),
                         Column(children: [
                           IconButton(
-                            icon: Icon(AppIcons.gift),
+                            icon: Icon(AppIcons.gift, color: Colors.grey),
                             onPressed: () {},
                           ),
                           Text('Donaciones')
@@ -56,14 +57,16 @@ class BottomNavigation extends StatelessWidget {
                         ),
                         Column(children: [
                           IconButton(
-                            icon: Icon(AppIcons.hand_holding),
+                            icon:
+                                Icon(AppIcons.hand_holding, color: Colors.grey),
                             onPressed: () {},
                           ),
                           Text('Solicitudes')
                         ]),
                         Column(children: [
                           IconButton(
-                            icon: Icon(Icons.messenger_rounded),
+                            icon: Icon(Icons.messenger_rounded,
+                                color: Colors.grey),
                             onPressed: () {},
                           ),
                           Text('Mensajes')
@@ -95,6 +98,9 @@ class BNBCustomPainter extends CustomPainter {
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
     path.close();
+    canvas.drawShadow(path, Colors.black, 5, true);
+    canvas.drawShadow(path, Colors.black, 5, true);
+    canvas.drawShadow(path, Colors.black, 5, true);
     canvas.drawShadow(path, Colors.black, 5, true);
 
     canvas.drawPath(path, paint);
