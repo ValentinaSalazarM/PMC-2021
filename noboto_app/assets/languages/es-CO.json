@@ -1,0 +1,26 @@
+{
+    "offer": {
+        "detail": {
+            "step_1": {
+                "step_name": "Publicada",
+                "footer": "Acepta una contraoferta para continuar"
+            },
+            "step_2": {
+                "step_name": "Contraoferta aceptada",
+                "footer": "Acepta una contraoferta para continuar"
+            },
+            "step_3": {
+                "step_name": "Esperando confirmación",
+                "footer": "Acepta una contraoferta para continuar"
+            },
+            "step_4": {
+                "step_name": "En progreso",
+                "footer": "Acepta una contraoferta para continuar"
+            },
+            "step_5": {
+                "step_name": "Finalizado",
+                "footer": "Acepta una contraoferta para continuar"
+            }
+        }
+    }
+}
