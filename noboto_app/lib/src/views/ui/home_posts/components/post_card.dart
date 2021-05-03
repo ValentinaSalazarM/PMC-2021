@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/business_logic/models/models.dart';
+import 'package:noboto_app/src/views/ui/post_detail/post_detail.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
@@ -17,18 +18,26 @@ class PostCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         child: Column(
           children: [
-            CachedNetworkImage(
-                imageUrl: post.product!.imageUrls![0],
-                imageBuilder: (context, imageProvider) => Container(
-                      height: 150.0,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: imageProvider,
-                              alignment: FractionalOffset.topCenter,
-                              fit: BoxFit.cover)),
-                    ),
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error)),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostDetail(post)),
+                );
+              },
+              child: CachedNetworkImage(
+                  imageUrl: post.product!.imageUrls![0],
+                  imageBuilder: (context, imageProvider) => Container(
+                        height: 150.0,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: imageProvider,
+                                alignment: FractionalOffset.topCenter,
+                                fit: BoxFit.cover)),
+                      ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error)),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -45,7 +54,7 @@ class PostCard extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       Row(
-                        children: [Icon(Icons.sync_alt), Text("Libro")],
+                        children: [Icon(Icons.sync_alt), Text(post.want!)],
                       ),
                       Row(
                         children: [Icon(Icons.place), Text("500 m de Casa")],

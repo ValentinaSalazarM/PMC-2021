@@ -12,10 +12,12 @@ class _PostListState extends State<PostList> {
     Post(
         id: "1",
         active: true,
+        want: "Libro",
+        wantDescription: "Negociable, pero me gustaría un libro, ojalá de ficción",
         product: Product(
             id: "1",
             name: "Libro de La Peste",
-            description: "Libro",
+            description: "Busco cambiar este libro por otro libro. Está como nuevo, realmente me lo regalaron y ya tenía una copia \n Edición: Debolsillo",
             imageUrls: [
               "https://1.bp.blogspot.com/-NwxXKFhXQX4/WK922_LuoaI/AAAAAAAAC8Q/LbCfS2HqStA7TMVgjKDekmobS9IBv_rHQCLcB/s1600/DSC00346.jpg"
             ]),
@@ -27,6 +29,8 @@ class _PostListState extends State<PostList> {
     Post(
         id: "1",
         active: true,
+        want: "Moldes de Repostería",
+        wantDescription: "Me gustaría que fueran de diversas formas",
         product: Product(
             id: "1",
             name: "Licuadora",
@@ -38,7 +42,8 @@ class _PostListState extends State<PostList> {
             name: "María Vargas",
             profilePictureUrl:
                 "https://i.pinimg.com/474x/30/5b/e5/305be5ff3b0b81253090c017dadc0d7a.jpg",
-            rating: 3.8))
+            rating: 3.5))
+
   ];
   @override
   Widget build(BuildContext context) {
