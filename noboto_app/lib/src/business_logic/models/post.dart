@@ -6,6 +6,8 @@ class Post {
   DateTime? publishedDate;
   bool? active;
   Product product = Product();
+  String? want;
+  String? wantDescription;
   List<Location>? locations;
   User? user;
   List<Counteroffer>? counteroffers;
@@ -19,6 +21,8 @@ class Post {
     this.publishedDate,
     this.active,
     required this.product,
+    this.want,
+    this.wantDescription,
     this.locations,
     this.user,
     this.counteroffers,
@@ -32,6 +36,8 @@ class Post {
     title = json['title'] as String;
     publishedDate = dateTimeFromString(json['publishedDate'] as String);
     active = json['active'] as bool;
+    want = json['want'] as String;
+    wantDescription = json['wantDescription'] as String;
     product = json['object'] != null
         ? Product.fromJson(json['object'] as Map<String, dynamic>)
         : Product();
@@ -64,6 +70,8 @@ class Post {
     data['title'] = title;
     data['publishedDate'] = publishedDate;
     data['active'] = active;
+    data['want'] = want;
+    data['wantDescription'] = wantDescription;
     if (product != null) data['object'] = product.toJson();
     if (locations != null) {
       data['locations'] = locations!.map((dynamic v) => v.toJson()).toList();
