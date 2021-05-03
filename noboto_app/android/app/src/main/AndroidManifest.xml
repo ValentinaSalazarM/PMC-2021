@@ -4,6 +4,8 @@
     <application
         android:label="noboto_app"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyA_-BUCQK5Lr5sRy4u8Ou5U8oG08CxqjCE"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
