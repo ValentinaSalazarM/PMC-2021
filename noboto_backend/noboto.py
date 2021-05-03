@@ -86,6 +86,8 @@ class Publicacion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     titulo = db.Column(db.String(255))
     fecha = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    contraofertaDeseada = db.Column(db.String(255))
+    descripcionContaoferta = db.Column(db.String(255))
 
     usuario_id = db.Column(db.String(255), db.ForeignKey('usuario.identificacion'), nullable=False)
     usuario = db.relationship('Usuario', backref = 'publicaciones', uselist=True, 
@@ -163,7 +165,7 @@ class Mensaje_Schema(ma.Schema):
 class Publicacion_Schema(ma.Schema):
     class Meta:
         # Campos que se exponen
-        fields = ('id', 'titulo', 'fecha', 'usuario_id', 'objeto_id')
+        fields = ('id', 'titulo', 'fecha', 'contraofertaDeseada', 'descripcionContaoferta', 'usuario_id', 'objeto_id')
     fecha = fd.DateTime(as_string=True)
 
 class Contraoferta_Schema(ma.Schema):

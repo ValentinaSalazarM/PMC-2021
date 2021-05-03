@@ -137,16 +137,33 @@ class RecursoPublicacionesUsuario(Resource):
 class RecursoContraofertasPublicacion(Resource):
     def get(self, id_publicacion):
         publicacion = noboto.Publicacion.query.get_or_404(id_publicacion)
+        ubicaciones_publicacion = [(loc.latitud, loc.longitud) for loc in publicacion.localizaciones]
         contraofertas = publicacion.contraofertas
-        print(type(contraofertas))
-        return contraofertas_schema.dump(contraofertas)
+        distancias_publicacion = {}
+        tumbamiento_publicacion = {}
+        for contraoferta in contraofertas:
+            usuario_contraoferta = noboto.Usuario.query.get_or_404(contraoferta.usuario_id)
+            ubicaciones_contraoferta = [(loc.latitud, loc.longitud) for loc in usuario_contraoferta.localizaciones]
+            distancias = []
+            for ubicacion_publicacion in ubicaciones_publicacion:
+                for ubicacion_contraoferta in ubicaciones_contraoferta:
+                    distancias.append(haversine(ubicacion_publicacion, ubicacion_contraoferta))
+            distancias_publicacion[int(contraoferta.id)] = min(distancias)
+            tumbamiento_publicacion[int(contraoferta.id)] = (publicacion.objeto.valorIntrinseco-contraoferta.objeto.valorIntrinseco)/publicacion.objeto.valorIntrinseco        
+        contraofertas_dump = contraofertas_schema.dump(contraofertas)
+        for contraoferta in contraofertas_dump:
+            contraoferta['dist'] = float(distancias_publicacion[int(contraoferta['id'])])
+            contraoferta['tumbamiento'] = float(tumbamiento_publicacion[int(contraoferta['id'])])
+        return contraofertas_dump
 
-class RecursoContraofertasPublicacionML(Resource):
+class RecursoPublicacionesML(Resource):
     def get(self, id_publicacion, radio_m):
         publicaciones = noboto.Publicacion.query.all()
         publicacion_interes = noboto.Publicacion.query.get_or_404(id_publicacion)
         ubicaciones_interes = [(loc.latitud, loc.longitud) for loc in publicacion_interes.localizaciones]
         publicaciones_en_rango = []
+        distancias_publicacion = {}
+        tumbamiento_publicacion = {}
         for publicacion in publicaciones:
             if not publicacion.id == id_publicacion:
                 ubicaciones_actual = [(loc.latitud, loc.longitud) for loc in publicacion.localizaciones]
@@ -156,12 +173,38 @@ class RecursoContraofertasPublicacionML(Resource):
                         distancias.append(haversine(ubicacion_interes, ubicacion_actual))
                 if min(distancias) <= radio_m/1000:
                     publicaciones_en_rango.append(publicacion)
+                distancias_publicacion[int(publicacion.id)] = min(distancias)
+                tumbamiento_publicacion[int(publicacion.id)] = (publicacion_interes.objeto.valorIntrinseco-publicacion.objeto.valorIntrinseco)/publicacion_interes.objeto.valorIntrinseco
         publicaciones_dif_precio = {}
         for publicacion in publicaciones_en_rango:
             publicaciones_dif_precio[publicacion] = abs(publicacion_interes.objeto.valorIntrinseco - publicacion.objeto.valorIntrinseco)
         publicaciones_ordenadas = list(dict(sorted(publicaciones_dif_precio.items(), key=lambda item: item[1])).keys())
-        return publicaciones_schema.dump(publicaciones_ordenadas[:3])
+        publicaciones_dump = publicaciones_schema.dump(publicaciones_ordenadas[:3])
+        for publicacion in publicaciones_dump:
+            publicacion['dist'] = float(distancias_publicacion[int(publicacion['id'])])
+            publicacion['tumbamiento'] = float(tumbamiento_publicacion[int(publicacion['id'])])
+        return publicaciones_dump
 
+class RecursoPublicacionesDistUsuario(Resource):
+    def get(self, identificacion_usuario):
+        publicaciones = noboto.Publicacion.query.all()
+        usuario = noboto.Usuario.query.get_or_404(identificacion_usuario)
+        ubicaciones_usuario = [(loc.latitud, loc.longitud) for loc in usuario.localizaciones]
+        distancias_publicacion = {}
+        publicaciones_otro_usuario = []
+        for publicacion in publicaciones:
+            if not int(publicacion.usuario_id) == identificacion_usuario:
+                publicaciones_otro_usuario.append(publicacion)
+                ubicaciones_actual = [(loc.latitud, loc.longitud) for loc in publicacion.localizaciones]
+                distancias = []
+                for ubicacion_usuario in ubicaciones_usuario:
+                    for ubicacion_actual in ubicaciones_actual:
+                        distancias.append(haversine(ubicacion_usuario, ubicacion_actual))
+                distancias_publicacion[int(publicacion.id)] = min(distancias)
+        publicaciones_dump = publicaciones_schema.dump(publicaciones_otro_usuario)
+        for publicacion in publicaciones_dump:
+            publicacion['dist'] = distancias_publicacion[int(publicacion['id'])]
+        return publicaciones_dump
 
 noboto.api.add_resource(RecursoListarUsuarios, '/usuarios')
 noboto.api.add_resource(RecursoUnUsuario,'/usuario/<int:identificacion_usuario>')
@@ -172,9 +215,10 @@ noboto.api.add_resource(RecursoUnaContraoferta,'/contraoferta/<int:id_contraofer
 noboto.api.add_resource(RecursoListarTrueques, '/trueques')
 noboto.api.add_resource(RecursoUnTrueque,'/trueque/<int:id_trueque>')
 
+noboto.api.add_resource(RecursoPublicacionesDistUsuario,'/publicaciones_dist_usuario/<int:identificacion_usuario>')
 noboto.api.add_resource(RecursoPublicacionesUsuario,'/publicaciones_usuario/<int:identificacion_usuario>')
 noboto.api.add_resource(RecursoContraofertasPublicacion,'/contraofertas_publicacion/<int:id_publicacion>')
-noboto.api.add_resource(RecursoContraofertasPublicacionML,'/contraofertas_publicacionML/<int:id_publicacion>/radio_m/<int:radio_m>')
+noboto.api.add_resource(RecursoPublicacionesML,'/publicacionesML/<int:id_publicacion>/radio_m/<int:radio_m>')
 
 if __name__ == '__main__':
     noboto.app.run(debug=True)
