@@ -21,11 +21,9 @@ class PostDetail extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             ),
             flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: post.product!.imageUrls![0],
+              background: Stack(alignment: Alignment.bottomCenter, children: [
+                CachedNetworkImage(
+                    imageUrl: post.product.imageUrls![0],
                     imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
@@ -36,20 +34,18 @@ class PostDetail extends StatelessWidget {
                     placeholder: (context, url) => CircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error)),
                 Container(
-                  height: 0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(50),
-                      topLeft: Radius.circular(50),
-                    ),
-                  )
-                )]
-              ),
+                    height: 0,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(50),
+                        topLeft: Radius.circular(50),
+                      ),
+                    ))
+              ]),
             ),
           ),
           SliverToBoxAdapter(
-
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -80,24 +76,23 @@ class PostDetail extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
                       child: SizedBox(
-                        width: double.infinity,
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            primary: Colors.white,
-                            backgroundColor: Color.fromRGBO(31, 58, 131, 1),
-                            textStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+                    width: double.infinity,
+                    child: TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          backgroundColor: Color.fromRGBO(31, 58, 131, 1),
+                          textStyle: TextStyle(
+                            fontSize: 18,
                           ),
-                            onPressed: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Contraofertar"),
-                            )
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50.0)),
                         ),
-                      )
-                  ),
+                        onPressed: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Contraofertar"),
+                        )),
+                  )),
                 )
               ],
             ),
@@ -117,7 +112,7 @@ class PostDetail extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
-              post.product!.name!,
+              post.product.name!,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
@@ -184,7 +179,7 @@ class PostDetail extends StatelessWidget {
               ),
             ),
           ),
-          Text(post.product!.description!)
+          Text(post.product.description!)
         ],
       ),
     );

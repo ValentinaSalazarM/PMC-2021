@@ -26,7 +26,7 @@ class PostCard extends StatelessWidget {
                 );
               },
               child: CachedNetworkImage(
-                  imageUrl: post.product!.imageUrls![0],
+                  imageUrl: post.product.imageUrls![0],
                   imageBuilder: (context, imageProvider) => Container(
                         height: 150.0,
                         decoration: BoxDecoration(
@@ -49,7 +49,7 @@ class PostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        post.product!.name!,
+                        post.product.name!,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
