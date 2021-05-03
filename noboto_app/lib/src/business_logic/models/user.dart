@@ -80,7 +80,7 @@ User userDemo = User(
   profilePictureUrl: 'assets/images/example_user_profile_pic.jpg',
   rating: 3.5,
   preferredLocations: <Location>[],
-  posts: <Post>[demo_post, Post(product: demoProducts[1])],
+  posts: <Post>[demoPost, Post(product: demoProducts[1])],
   counteroffers: [
     Counteroffer(product: demoProducts[2]),
   ],
