@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:noboto_app/src/business_logic/models/models.dart';
+import 'package:noboto_app/src/views/utils/components/buttons.dart';
 import 'package:noboto_app/src/views/utils/constants.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class UserOfferView extends StatefulWidget {
+  final Post post;
+
+  const UserOfferView({Key? key, required this.post}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _UserOfferView();
 }
 
 class _UserOfferView extends State<UserOfferView> {
-  Post post = demo_post;
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -21,14 +23,14 @@ class _UserOfferView extends State<UserOfferView> {
       appBar: AppBar(
         titleSpacing: 10,
         toolbarHeight: getProportionateScreenHeight(90),
-        title: Text("${demo_post.title}"),
+        title: Text("${widget.post.title}"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           tooltip: 'Atrás',
-          onPressed: () {},
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: Body(post: post),
+      body: Body(post: widget.post),
     );
   }
 }
@@ -469,10 +471,8 @@ class CounterofferCard extends StatelessWidget {
                             style: TextStyle(color: Colors.black54),
                           ),
                           const SizedBox(height: 5),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text("Aceptar contraoferta"),
-                          ),
+                          BlueButtonWidget(
+                              text: "Aceptar contraoferta", press: () {}),
                         ],
                       ),
                     ),
@@ -806,9 +806,9 @@ class RecommendedCard extends StatelessWidget {
                             style: TextStyle(color: Colors.black54),
                           ),
                           const SizedBox(height: 5),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text("Envía una contraoferta"),
+                          BlueButtonWidget(
+                            text: "Envía una contraoferta",
+                            press: () {},
                           ),
                         ],
                       ),

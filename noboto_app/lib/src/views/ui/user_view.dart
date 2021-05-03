@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/business_logic/models/models.dart';
+import 'package:noboto_app/src/views/ui/user_offer_view.dart';
 import 'package:noboto_app/src/views/utils/constants.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
 
@@ -11,11 +12,15 @@ class UserView extends StatefulWidget {
 class _UserView extends State<UserView> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: getProportionateScreenHeight(90),
         title: Text("Perfil"),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          tooltip: 'Atrás',
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.logout),
@@ -37,6 +42,7 @@ class Body extends StatelessWidget {
   final name = 'Camila';
   @override
   Widget build(BuildContext context) {
+    final user = userDemo;
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -47,7 +53,7 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "¡Hola ${name}!",
+                  "¡Hola ${user.name}!",
                   style: TextStyle(
                     fontFamily: 'Metropolis',
                     fontWeight: FontWeight.w700,
@@ -60,7 +66,7 @@ class Body extends StatelessWidget {
                   color: Color(0xFF1F3A83),
                 ),
                 Text(
-                  '(${rating})',
+                  '(${user.rating})',
                   style: TextStyle(color: Color(0xFF1F3A83)),
                 ),
               ],
@@ -75,9 +81,9 @@ class Body extends StatelessWidget {
                   child: Row(
                     children: [
                       ...List.generate(
-                        demoProducts.length,
+                        user.posts!.length,
                         (index) => ProductCard(
-                          product: demoProducts[index],
+                          post: user.posts![index],
                         ),
                       ),
                       SizedBox(width: getProportionateScreenWidth(20)),
@@ -96,9 +102,9 @@ class Body extends StatelessWidget {
                   child: Row(
                     children: [
                       ...List.generate(
-                        demoProducts.length,
-                        (index) => ProductCard(
-                          product: demoProducts[index],
+                        user.counteroffers!.length,
+                        (index) => CounterofferCard(
+                          counteroffer: user.counteroffers![index],
                         ),
                       ),
                       SizedBox(width: getProportionateScreenWidth(20)),
@@ -120,11 +126,67 @@ class ProductCard extends StatelessWidget {
     Key? key,
     this.width = 140,
     this.aspectRatio = 1.02,
-    required this.product,
+    required this.post,
   }) : super(key: key);
 
   final double width, aspectRatio;
-  final Product product;
+  final Post post;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
+      child: SizedBox(
+        width: getProportionateScreenWidth(width),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => UserOfferView(post: post)),
+            );
+          },
+          child: Column(
+            children: [
+              AspectRatio(
+                  aspectRatio: aspectRatio,
+                  child: Container(
+                    padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+                    decoration: BoxDecoration(
+                      color: kSecondaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Image.asset(post.product.imageUrls![0]),
+                  )),
+              const SizedBox(height: 5),
+              Text(
+                post.product.name ?? "",
+                style: TextStyle(color: Colors.black),
+              ),
+              // Text(
+              //   "\$${product.price}",
+              //   style: TextStyle(
+              //       fontSize: getProportionateScreenWidth(18),
+              //       color: kPrimaryColor),
+              // )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CounterofferCard extends StatelessWidget {
+  const CounterofferCard({
+    Key? key,
+    this.width = 140,
+    this.aspectRatio = 1.02,
+    required this.counteroffer,
+  }) : super(key: key);
+
+  final double width, aspectRatio;
+  final Counteroffer counteroffer;
 
   @override
   Widget build(BuildContext context) {
@@ -142,11 +204,11 @@ class ProductCard extends StatelessWidget {
                     color: kSecondaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Image.asset(product.imageUrls![0]),
+                  child: Image.asset(counteroffer.product!.imageUrls![0]),
                 )),
             const SizedBox(height: 5),
             Text(
-              product.name ?? "",
+              counteroffer.product!.name ?? "",
               style: TextStyle(color: Colors.black),
             ),
             // Text(
@@ -222,12 +284,13 @@ class ProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 115,
-        width: 115,
-        child: CircleAvatar(
-          backgroundImage:
-              AssetImage("assets/images/example_user_profile_pic.jpg"),
-        ));
+      height: 115,
+      width: 115,
+      child: CircleAvatar(
+        backgroundImage:
+            AssetImage("assets/images/example_user_profile_pic.jpg"),
+      ),
+    );
   }
 }
 
