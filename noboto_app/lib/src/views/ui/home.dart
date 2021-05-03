@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/views/ui/coming_soon_view.dart';
 import 'package:noboto_app/src/views/ui/home_posts/home_posts.dart';
+import 'package:noboto_app/src/views/ui/post_create/post_create_view.dart';
 import 'package:noboto_app/src/views/utils/app_icons.dart';
 import 'package:noboto_app/src/views/utils/navigation.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
@@ -45,15 +46,7 @@ class _HomeState extends State<Home> {
                       size: Size(size.width, 80),
                       painter: BNBCustomPainter(),
                     ),
-                    Center(
-                      heightFactor: 0.6,
-                      child: FloatingActionButton(
-                        onPressed: () {},
-                        backgroundColor: Color(0xFF1F3A83), //#1F3A83
-                        child: Icon(Icons.add),
-                        elevation: 0.1,
-                      ),
-                    ),
+
                     Container(
                       color: Colors.transparent,
                       width: size.width,
@@ -174,7 +167,21 @@ class _HomeState extends State<Home> {
                           )
                         ],
                       ),
-                    )
+                    ),
+                    Center(
+                      heightFactor: 0.6,
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PostCreate()),
+                          );
+                        },
+                        backgroundColor: Color(0xFF1F3A83), //#1F3A83
+                        child: Icon(Icons.add),
+                        elevation: 0.1,
+                      ),
+                    ),
                   ],
                 ),
               ),
