@@ -25,6 +25,8 @@ class AppIcons {
   static const _kFontFam = 'AppIcons';
   static const String? _kFontPkg = null;
 
+  static const IconData fairness =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData gift =
       IconData(0xf06b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData exchange_alt =

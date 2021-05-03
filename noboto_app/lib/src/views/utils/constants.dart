@@ -48,3 +48,38 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: BorderSide(color: kTextColor),
   );
 }
+
+Color? getFairnessColor(num fairness) {
+  if (fairness > 0.25) return Colors.redAccent[700];
+  if (fairness >= -0.25) return Colors.lightGreen[600];
+  return Colors.blue[900];
+}
+
+String getFairnessText(num fairness) {
+  if (fairness > 0.25) return "Desventaja";
+  if (fairness >= -0.25) return "Intercambio justo";
+  return "Ventaja";
+}
+
+Color? getConditionColor(num condition) {
+  switch (condition) {
+    case 1:
+      return Colors.redAccent[700];
+    case 2:
+      return Colors.orange[400];
+    case 3:
+      return Colors.yellow[600];
+    case 4:
+      return Colors.lightGreen[400];
+    case 5:
+      return Colors.green;
+    default:
+      return Colors.grey;
+  }
+}
+
+String getConditionText(num condition) {
+  if (condition < 3) return "Deteriorado";
+  if (condition < 4) return "Uso visible";
+  return "Buen estado";
+}
