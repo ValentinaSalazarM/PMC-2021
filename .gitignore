@@ -1,0 +1,7 @@
+
+noboto_app/pubspec.lock
+noboto_app/ios/Podfile
+noboto_app/ios/Flutter/Release.xcconfig
+noboto_app/ios/Flutter/Debug.xcconfig
+*.lock
+*.xcconfig
