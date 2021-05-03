@@ -6,6 +6,8 @@ class Counteroffer {
   Product? product;
   User? user;
   Post? post;
+  num? fairIndex;
+  num? distance;
 
   Counteroffer({
     this.id,
@@ -13,6 +15,8 @@ class Counteroffer {
     this.product,
     this.user,
     this.post,
+    this.fairIndex,
+    this.distance,
   });
 
   Counteroffer.fromJson(Map<String, dynamic> json) {
@@ -27,6 +31,8 @@ class Counteroffer {
     post = json['post'] != null
         ? Post.fromJson(json['post'] as Map<String, dynamic>)
         : null;
+    fairIndex = json['fairIndex'] as num;
+    distance = json['distance'] as num;
   }
 
   Map<String, dynamic>? toJson() {
@@ -36,6 +42,8 @@ class Counteroffer {
     if (product != null) data['object'] = product!.toJson();
     if (user != null) data['user'] = user!.toJson();
     if (post != null) data['post'] = post!.toJson();
+    data['fairIndex'] = fairIndex;
+    data['distance'] = distance;
     return data;
   }
 }
