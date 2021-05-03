@@ -1,19 +1,17 @@
 part of models;
 
 class User {
-  String? id;
   String? nationalId;
   String? name;
   String? email;
   String? phone;
   String? profilePictureUrl;
   num? rating;
-  List<Location>? preferredLocations;
-  List<Post>? posts;
-  List<Counteroffer>? counteroffers;
+  List<Location>? preferredLocations = <Location>[];
+  List<Post>? posts = <Post>[];
+  List<Counteroffer>? counteroffers = <Counteroffer>[];
 
   User({
-    this.id,
     this.nationalId,
     this.name,
     this.email,
@@ -26,7 +24,6 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as String;
     nationalId = json['nationalId'] as String;
     name = json['name'] as String;
     email = json['email'] as String;
@@ -55,7 +52,6 @@ class User {
 
   Map<String, dynamic>? toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
     data['nationalId'] = nationalId;
     data['name'] = name;
     data['email'] = email;
@@ -75,3 +71,17 @@ class User {
     return data;
   }
 }
+
+User userDemo = User(
+  nationalId: '12345678',
+  name: 'Sara',
+  email: 'Lopez',
+  phone: '3120983476',
+  profilePictureUrl: 'assets/images/example_user_profile_pic.jpg',
+  rating: 3.5,
+  preferredLocations: <Location>[],
+  posts: <Post>[demoPost, Post(product: demoProducts[1])],
+  counteroffers: [
+    Counteroffer(product: demoProducts[2]),
+  ],
+);

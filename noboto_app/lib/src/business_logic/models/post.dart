@@ -89,7 +89,7 @@ class Post {
   }
 }
 
-Post demo_post = Post(
+Post demoPost = Post(
   id: '1',
   title: 'Control de PS4',
   publishedDate: dateTimeFromString('2021-05-01'),

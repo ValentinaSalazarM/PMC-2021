@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:noboto_app/src/business_logic/models/models.dart';
 import 'package:noboto_app/src/views/utils/constants.dart';
 import 'dart:math' as math; // import this
+import 'package:noboto_app/src/views/ui/maps.dart';
 
 class PostDetail extends StatelessWidget {
   final Post post;
@@ -70,7 +71,8 @@ class PostDetail extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                      child: Image.asset("assets/images/maps_placeholder.png")),
+                      child: SizedBox(
+                          width: 348, height: 200, child: GoogleMapScreen())),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

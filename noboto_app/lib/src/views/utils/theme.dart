@@ -22,20 +22,6 @@ ThemeData theme() {
     fontFamily: "Muli",
     appBarTheme: appBarTheme(),
     textTheme: textTheme(),
-    buttonColor: Color(0xFF1F3A83),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-          textStyle: TextStyle(
-            fontFamily: 'Metropolis',
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-          ),
-          primary: Color(0xFF1F3A83),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          minimumSize: Size(307, 56)),
-    ),
     inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
