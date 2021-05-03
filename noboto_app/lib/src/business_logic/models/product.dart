@@ -2,6 +2,7 @@ part of models;
 
 class Product {
   String? id;
+  String? name;
   String? description;
   String? category;
   num? condition;
@@ -12,6 +13,7 @@ class Product {
 
   Product(
       {this.id,
+        this.name,
       this.description,
       this.category,
       this.condition,
@@ -21,6 +23,7 @@ class Product {
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'] as String;
+    name = json['name'] as String;
     description = json['description'] as String;
     category = json['category'] as String;
     condition = json['condition'] as num;
@@ -37,6 +40,7 @@ class Product {
   Map<String, dynamic>? toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['name'] = name;
     data['description'] = description;
     data['category'] = category;
     data['condition'] = condition;
