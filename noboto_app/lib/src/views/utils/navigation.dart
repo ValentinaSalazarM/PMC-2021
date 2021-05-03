@@ -9,73 +9,77 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        Positioned(
-            bottom: 0,
-            left: 0,
-            child: Container(
-              width: size.width,
-              height: 80,
-              // color: Colors.white,
-              child: Stack(children: [
-                CustomPaint(
-                  size: Size(size.width, 80),
-                  painter: BNBCustomPainter(),
-                ),
-                Center(
-                    heightFactor: 0.6,
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      backgroundColor: Color(0xFF1F3A83), //#1F3A83
-                      child: Icon(Icons.add),
-                      elevation: 0.1,
-                    )),
-                Container(
-                  width: size.width,
-                  height: 80,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(children: [
-                          IconButton(
-                            icon:
-                                Icon(AppIcons.exchange_alt, color: Colors.grey),
-                            onPressed: () {},
+    return Container(
+      color: Colors.transparent,
+      height: 80,
+      child: Stack(
+        children: [
+          Positioned(
+              bottom: 0,
+              left: 0,
+              child: Container(
+                color: Colors.transparent,
+                width: size.width,
+                child: Stack(children: [
+                  CustomPaint(
+                    size: Size(size.width, 80),
+                    painter: BNBCustomPainter(),
+                  ),
+                  Center(
+                      heightFactor: 0.6,
+                      child: FloatingActionButton(
+                        onPressed: () {},
+                        backgroundColor: Color(0xFF1F3A83), //#1F3A83
+                        child: Icon(Icons.add),
+                        elevation: 0.1,
+                      )),
+                  Container(
+                    color: Colors.transparent,
+                    width: size.width,
+                    height: 80,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(children: [
+                            IconButton(
+                              icon: Icon(AppIcons.exchange_alt,
+                                  color: Colors.grey),
+                              onPressed: () {},
+                            ),
+                            Text('Trueques')
+                          ]),
+                          Column(children: [
+                            IconButton(
+                              icon: Icon(AppIcons.gift, color: Colors.grey),
+                              onPressed: () {},
+                            ),
+                            Text('Donaciones')
+                          ]),
+                          Container(
+                            width: size.width * 0.2,
                           ),
-                          Text('Trueques')
+                          Column(children: [
+                            IconButton(
+                              icon: Icon(AppIcons.hand_holding,
+                                  color: Colors.grey),
+                              onPressed: () {},
+                            ),
+                            Text('Solicitudes')
+                          ]),
+                          Column(children: [
+                            IconButton(
+                              icon: Icon(Icons.messenger_rounded,
+                                  color: Colors.grey),
+                              onPressed: () {},
+                            ),
+                            Text('Mensajes')
+                          ])
                         ]),
-                        Column(children: [
-                          IconButton(
-                            icon: Icon(AppIcons.gift, color: Colors.grey),
-                            onPressed: () {},
-                          ),
-                          Text('Donaciones')
-                        ]),
-                        Container(
-                          width: size.width * 0.2,
-                        ),
-                        Column(children: [
-                          IconButton(
-                            icon:
-                                Icon(AppIcons.hand_holding, color: Colors.grey),
-                            onPressed: () {},
-                          ),
-                          Text('Solicitudes')
-                        ]),
-                        Column(children: [
-                          IconButton(
-                            icon: Icon(Icons.messenger_rounded,
-                                color: Colors.grey),
-                            onPressed: () {},
-                          ),
-                          Text('Mensajes')
-                        ])
-                      ]),
-                )
-              ]),
-            ))
-      ],
+                  )
+                ]),
+              ))
+        ],
+      ),
     );
   }
 }
