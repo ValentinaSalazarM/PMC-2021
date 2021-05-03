@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:noboto_app/src/views/ui/home_posts/components/categories.dart';
 import 'package:noboto_app/src/views/ui/home_posts/components/home_header.dart';
 import 'package:noboto_app/src/views/ui/home_posts/components/post_list.dart';
-import 'package:noboto_app/src/views/ui/user_view.dart';
+import 'package:noboto_app/src/views/ui/user_view/user_view.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
 
 class HomePosts extends StatefulWidget {

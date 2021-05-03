@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/business_logic/models/models.dart';
-import 'package:noboto_app/src/views/ui/user_offer_view.dart';
+import 'package:noboto_app/src/views/ui/user_offer_view/user_offer_view.dart';
 import 'package:noboto_app/src/views/utils/constants.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
 

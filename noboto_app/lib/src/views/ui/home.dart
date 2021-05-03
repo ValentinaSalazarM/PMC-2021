@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/views/ui/coming_soon_view.dart';
 import 'package:noboto_app/src/views/ui/home_posts/home_posts.dart';
-import 'package:noboto_app/src/views/ui/user_offer_view.dart';
-import 'package:noboto_app/src/views/ui/user_view.dart';
 import 'package:noboto_app/src/views/utils/app_icons.dart';
 import 'package:noboto_app/src/views/utils/navigation.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
