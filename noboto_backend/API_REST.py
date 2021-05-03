@@ -221,4 +221,4 @@ noboto.api.add_resource(RecursoContraofertasPublicacion,'/contraofertas_publicac
 noboto.api.add_resource(RecursoPublicacionesML,'/publicacionesML/<int:id_publicacion>/radio_m/<int:radio_m>')
 
 if __name__ == '__main__':
-    noboto.app.run(debug=True)
+    noboto.app.run(debug=True, host='0.0.0.0')
