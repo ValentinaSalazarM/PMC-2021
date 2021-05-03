@@ -1,8 +1,9 @@
-from flask import Flask 
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api
 from flask_marshmallow import Marshmallow  
 from flask_marshmallow.fields import fields as fd
+import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///noboto.db'
@@ -84,7 +85,7 @@ class Publicacion(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     titulo = db.Column(db.String(255))
-    fecha = db.Column(db.DateTime)
+    fecha = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     usuario_id = db.Column(db.String(255), db.ForeignKey('usuario.identificacion'), nullable=False)
     usuario = db.relationship('Usuario', backref = 'publicaciones', uselist=True, 
@@ -144,34 +145,36 @@ class Usuario_Schema(ma.Schema):
 class Trueque_Schema(ma.Schema):
     class Meta:
         # Campos que se exponen
-        fields = ('id', 'activo', 'diaEntrega', 'etapa')
+        fields = ('id', 'activo', 'diaEntrega', 'etapa', 'localizacion_id', 'publicacion_id', 'contraoferta_id')
+    diaEntrega = fd.DateTime(as_string=True)
 
 class Localizacion_Schema(ma.Schema):
     class Meta:
         # Campos que se exponen
-        fields = ('id', 'nombre', 'latitud', 'longitud', 'direccion')
+        fields = ('id', 'nombre', 'latitud', 'longitud', 'direccion', 'usuario_id')
     latitud = fd.Decimal(as_string=True)
     longitud = fd.Decimal(as_string=True)
 
 class Mensaje_Schema(ma.Schema):
     class Meta:
         # Campos que se exponen
-        fields = ('id', 'texto', 'fecha')
+        fields = ('id', 'texto', 'fecha', 'usuario_id', 'trueque_id', 'foto_id')
 
 class Publicacion_Schema(ma.Schema):
     class Meta:
         # Campos que se exponen
-        fields = ('id', 'titulo', 'fecha')
+        fields = ('id', 'titulo', 'fecha', 'usuario_id', 'objeto_id')
+    fecha = fd.DateTime(as_string=True)
 
 class Contraoferta_Schema(ma.Schema):
     class Meta:
         # Campos que se exponen
-        fields = ('id', 'mensaje')
+        fields = ('id', 'mensaje', 'usuario_id', 'publicacion_id', 'objeto_id')
 
 class Foto_Schema(ma.Schema):
     class Meta:
         # Campos que se exponen
-        fields = ('id', 'ruta')
+        fields = ('id', 'ruta', 'publicacion_id')
 
 class Objeto_Schema(ma.Schema):
     class Meta:
