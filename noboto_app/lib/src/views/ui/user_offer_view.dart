@@ -23,7 +23,7 @@ class _UserOfferView extends State<UserOfferView> {
         toolbarHeight: getProportionateScreenHeight(90),
         title: Text("${demo_post.title}"),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(Icons.arrow_back_ios_rounded),
           tooltip: 'Atrás',
           onPressed: () {},
         ),
