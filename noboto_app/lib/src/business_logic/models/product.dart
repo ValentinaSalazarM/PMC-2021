@@ -13,7 +13,7 @@ class Product {
 
   Product(
       {this.id,
-        this.name,
+      this.name,
       this.description,
       this.category,
       this.condition,
@@ -50,3 +50,37 @@ class Product {
     return data;
   }
 }
+
+// DEMO PRODUCTS
+List<Product> demoProducts = [
+  Product(
+    id: '1',
+    name: 'Control de PS4',
+    description: 'Dualshock 4 en perfecto estado',
+    category: 'Videojuegos',
+    condition: 4,
+    price: 150000,
+    intrinsicValue: 130000,
+    imageUrls: ["assets/images/image_popular_product_1.png"],
+  ),
+  Product(
+    id: '2',
+    name: 'Bermuda Nike Blanca',
+    description: 'Talla M - una sola postura. Es de tela deportiva',
+    category: 'Ropa',
+    condition: 5,
+    price: 80000,
+    intrinsicValue: 75000,
+    imageUrls: ["assets/images/image_popular_product_2.png"],
+  ),
+  Product(
+    id: '3',
+    name: 'Casco de bicicleta',
+    description: 'Casco rojo, en buen estado, talla L',
+    category: 'Deporte',
+    condition: 3,
+    price: 120000,
+    intrinsicValue: 80000,
+    imageUrls: ["assets/images/image_popular_product_3.png"],
+  )
+];
