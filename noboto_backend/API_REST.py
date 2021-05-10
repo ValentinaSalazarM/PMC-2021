@@ -129,6 +129,36 @@ class RecursoUnTrueque(Resource):
         noboto.db.session.commit()
         return '', 204
 
+# Funcionalidades Objeto
+objeto_schema = noboto.Objeto_Schema()
+objetos_schema = noboto.Objeto_Schema(many = True)
+class RecursoListarObjetos(Resource):
+    def get(self):
+        objetos = noboto.Objeto.query.all()
+        return objetos_schema.dump(objetos)
+    def post(self):
+        nuevo_objeto = noboto.Objeto(
+            id = request.json['id'],
+            nombre = request.json['nombre'],
+            descripcion = request.json['descripcion'],
+            categoria = request.json['categoria'],
+            condicion = request.json['condicion'],
+            precio = request.json['precio'],
+            valorIntrinseco = request.json['valorIntrinseco']
+        )
+        noboto.db.session.add(nuevo_objeto)
+        noboto.db.session.commit()
+        return objeto_schema.dump(nuevo_objeto)
+class RecursoUnObjeto(Resource):
+    def get(self, id_objeto):
+        objeto = noboto.Objeto.query.get_or_404(id_objeto)
+        return objeto_schema.dump(objeto)
+    def delete(self, id_objeto):
+        objeto = noboto.Objeto.query.get_or_404(id_objeto)
+        noboto.db.session.delete(objeto)
+        noboto.db.session.commit()
+        return '', 204
+
 class RecursoPublicacionesUsuario(Resource):
     def get(self, identificacion_usuario):
         usuario = noboto.Usuario.query.get_or_404(identificacion_usuario)
@@ -214,6 +244,8 @@ noboto.api.add_resource(RecursoListarContraofertas, '/contraofertas')
 noboto.api.add_resource(RecursoUnaContraoferta,'/contraoferta/<int:id_contraoferta>')
 noboto.api.add_resource(RecursoListarTrueques, '/trueques')
 noboto.api.add_resource(RecursoUnTrueque,'/trueque/<int:id_trueque>')
+noboto.api.add_resource(RecursoListarObjetos, '/objetos')
+noboto.api.add_resource(RecursoUnObjeto,'/objeto/<int:id_objeto>')
 
 noboto.api.add_resource(RecursoPublicacionesDistUsuario,'/publicaciones_dist_usuario/<int:identificacion_usuario>')
 noboto.api.add_resource(RecursoPublicacionesUsuario,'/publicaciones_usuario/<int:identificacion_usuario>')
