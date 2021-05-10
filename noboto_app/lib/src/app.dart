@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noboto_app/src/views/ui/home.dart';
+import 'package:noboto_app/src/maps_add_address.dart';
 import 'package:noboto_app/src/views/utils/theme.dart';
 
 class NobotoApp extends StatelessWidget {
@@ -10,7 +10,10 @@ class NobotoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Noboto',
       theme: theme(),
-      home: Home(),
+      home: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(child: GoogleMapScreen()),
+      ),
     );
   }
 }
