@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 
-class GoogleMapScreen extends StatefulWidget {
+class MapAddAddress extends StatefulWidget {
   @override
   _GoogleMapScreenState createState() => _GoogleMapScreenState();
 }
 
-class _GoogleMapScreenState extends State<GoogleMapScreen> {
+class _GoogleMapScreenState extends State<MapAddAddress> {
   Set<Marker> _markers = {};
   String searchAddr = '';
   GoogleMapController? mapController;
