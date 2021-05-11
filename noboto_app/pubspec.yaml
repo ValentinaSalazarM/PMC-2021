@@ -24,7 +24,6 @@ dependencies:
   flutter:
     sdk: flutter
   google_maps_flutter: ^2.0.3
-  
   provider: ^4.3.3
 
 
@@ -37,7 +36,8 @@ dependencies:
   cached_network_image: ^3.0.0
 
   flutter_rating_bar: ^4.0.0
-
+  geocoding: ^2.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
