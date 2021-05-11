@@ -26,7 +26,9 @@ class RecursoListarUsuarios(Resource):
 class RecursoUnUsuario(Resource):
     def get(self, identificacion_usuario):
         usuario = noboto.Usuario.query.get_or_404(identificacion_usuario)
-        return usuario_schema.dump(usuario)
+        usuario_dump = usuario_schema.dump(usuario)
+        usuario_dump['imagen'] = usuario.foto.ruta
+        return usuario_dump
     def delete(self, identificacion_usuario):
         usuario = noboto.Usuario.query.get_or_404(identificacion_usuario)
         noboto.db.session.delete(usuario)
@@ -54,7 +56,9 @@ class RecursoListarPublicaciones(Resource):
 class RecursoUnaPublicacion(Resource):
     def get(self, id_publicacion):
         publicacion = noboto.Publicacion.query.get_or_404(id_publicacion)
-        return publicacion_schema.dump(publicacion)
+        publicacion_dump = publicacion_schema.dump(publicacion)
+        publicacion_dump['imagenes'] = fotos_schema.dump(publicacion.fotos)
+        return publicacion_dump
     def delete(self, id_publicacion):
         publicacion = noboto.Publicacion.query.get_or_404(id_publicacion)
         noboto.db.session.delete(publicacion)
@@ -159,6 +163,32 @@ class RecursoUnObjeto(Resource):
         noboto.db.session.commit()
         return '', 204
 
+# Funcionalidades Foto
+foto_schema = noboto.Foto_Schema()
+fotos_schema = noboto.Foto_Schema(many = True)
+class RecursoListarFotos(Resource):
+    def get(self):
+        fotos = noboto.Foto.query.all()
+        return fotos_schema.dump(fotos)
+    def post(self):
+        nueva_foto = noboto.Foto(
+            id = request.json['id'],
+            ruta = request.json['ruta'],
+            publicacion_id = request.json['publicacion_id']
+        )
+        noboto.db.session.add(nueva_foto)
+        noboto.db.session.commit()
+        return foto_schema.dump(nueva_foto)
+class RecursoUnaFoto(Resource):
+    def get(self, id_foto):
+        foto = noboto.Foto.query.get_or_404(id_foto)
+        return foto_schema.dump(foto)
+    def delete(self, id_foto):
+        foto = noboto.Foto.query.get_or_404(id_foto)
+        noboto.db.session.delete(foto)
+        noboto.db.session.commit()
+        return '', 204
+
 class RecursoPublicacionesUsuario(Resource):
     def get(self, identificacion_usuario):
         usuario = noboto.Usuario.query.get_or_404(identificacion_usuario)
@@ -246,6 +276,8 @@ noboto.api.add_resource(RecursoListarTrueques, '/trueques')
 noboto.api.add_resource(RecursoUnTrueque,'/trueque/<int:id_trueque>')
 noboto.api.add_resource(RecursoListarObjetos, '/objetos')
 noboto.api.add_resource(RecursoUnObjeto,'/objeto/<int:id_objeto>')
+noboto.api.add_resource(RecursoListarFotos, '/fotos')
+noboto.api.add_resource(RecursoUnaFoto,'/foto/<int:id_foto>')
 
 noboto.api.add_resource(RecursoPublicacionesDistUsuario,'/publicaciones_dist_usuario/<int:identificacion_usuario>')
 noboto.api.add_resource(RecursoPublicacionesUsuario,'/publicaciones_usuario/<int:identificacion_usuario>')
