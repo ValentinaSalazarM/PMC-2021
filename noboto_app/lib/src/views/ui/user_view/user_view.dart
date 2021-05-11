@@ -74,7 +74,7 @@ class Body extends StatelessWidget {
             SizedBox(height: getProportionateScreenWidth(30)),
             Column(
               children: [
-                SectionTitle(text: "Mis ofertas"),
+                SectionTitleUser(text: "Mis ofertas"),
                 SizedBox(height: getProportionateScreenWidth(15)),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -95,7 +95,7 @@ class Body extends StatelessWidget {
             SizedBox(height: getProportionateScreenWidth(30)),
             Column(
               children: [
-                SectionTitle(text: "Mis contraofertas"),
+                SectionTitleUser(text: "Mis contraofertas"),
                 SizedBox(height: getProportionateScreenWidth(15)),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -224,8 +224,8 @@ class CounterofferCard extends StatelessWidget {
   }
 }
 
-class SectionTitle extends StatelessWidget {
-  const SectionTitle({
+class SectionTitleUser extends StatelessWidget {
+  const SectionTitleUser({
     Key? key,
     required this.text,
     // required this.press,

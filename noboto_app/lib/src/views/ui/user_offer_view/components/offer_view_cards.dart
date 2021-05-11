@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/business_logic/models/models.dart';
 import 'package:noboto_app/src/views/ui/user_offer_view/components/profile_picture.dart';
+import 'package:noboto_app/src/views/ui/user_offer_view/trade_two_view.dart';
 import 'package:noboto_app/src/views/utils/components/buttons.dart';
 import 'package:noboto_app/src/views/utils/components/indicators.dart';
 import 'package:noboto_app/src/views/utils/constants.dart';
@@ -12,10 +13,12 @@ class CounterofferCard extends StatelessWidget {
     this.width = 140,
     this.aspectRatio = 1.02,
     required this.counteroffer,
+    required this.post,
   }) : super(key: key);
 
   final double width, aspectRatio;
   final Counteroffer counteroffer;
+  final Post post;
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +116,22 @@ class CounterofferCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 5),
                           BlueButtonWidget(
-                              text: "Aceptar contraoferta", press: () {}),
+                            text: "Aceptar contraoferta",
+                            press: () {
+                              Exchange exchange = Exchange(
+                                active: true,
+                                step: 'ACEPTADA',
+                                offer: post,
+                                counteroffer: counteroffer,
+                              );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        TradeS2View(exchange: exchange)),
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),

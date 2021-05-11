@@ -6,9 +6,11 @@ class ExchangeProgress extends StatelessWidget {
     Key? key,
     this.width = 320,
     this.height = 30,
+    this.state = 0,
   }) : super(key: key);
   final double width;
   final double height;
+  final int state;
 
   @override
   Widget build(BuildContext context) {
@@ -22,52 +24,32 @@ class ExchangeProgress extends StatelessWidget {
               axis: TimelineAxis.horizontal,
               alignment: TimelineAlign.end,
               isFirst: true,
-              indicatorStyle: IndicatorStyle(
-                height: 10,
-                color: Color(0xFF1F3A83),
-                padding: const EdgeInsets.all(5),
-              ),
+              indicatorStyle: getTimelineDotStyle(state - 0),
               startChild: ExchangeProgressText(text: "Publicado"),
             ),
             TimelineTile(
               axis: TimelineAxis.horizontal,
               alignment: TimelineAlign.end,
-              indicatorStyle: IndicatorStyle(
-                height: 10,
-                color: Color(0xFF1F3A83),
-                padding: const EdgeInsets.all(5),
-              ),
+              indicatorStyle: getTimelineDotStyle(state - 1),
               startChild: ExchangeProgressText(text: "Contraoferta aceptada"),
             ),
             TimelineTile(
               axis: TimelineAxis.horizontal,
               alignment: TimelineAlign.end,
-              indicatorStyle: IndicatorStyle(
-                height: 10,
-                color: Color(0xFF1F3A83),
-                padding: const EdgeInsets.all(5),
-              ),
+              indicatorStyle: getTimelineDotStyle(state - 2),
               startChild: ExchangeProgressText(text: "Esperando confirmación"),
             ),
             TimelineTile(
               axis: TimelineAxis.horizontal,
               alignment: TimelineAlign.end,
-              indicatorStyle: IndicatorStyle(
-                height: 10,
-                color: Color(0xFF1F3A83),
-                padding: const EdgeInsets.all(5),
-              ),
+              indicatorStyle: getTimelineDotStyle(state - 3),
               startChild: ExchangeProgressText(text: "En progreso"),
             ),
             TimelineTile(
               axis: TimelineAxis.horizontal,
               alignment: TimelineAlign.end,
               isLast: true,
-              indicatorStyle: IndicatorStyle(
-                height: 10,
-                color: Color(0xFF1F3A83),
-                padding: const EdgeInsets.all(5),
-              ),
+              indicatorStyle: getTimelineDotStyle(state - 4),
               startChild: ExchangeProgressText(text: "Finalizado"),
             ),
           ],
@@ -98,3 +80,9 @@ class ExchangeProgressText extends StatelessWidget {
     );
   }
 }
+
+IndicatorStyle getTimelineDotStyle(int state) => IndicatorStyle(
+      height: 10,
+      color: state >= 0 ? Color(0xFF1F3A83) : Color(0xFFB6B7B7),
+      padding: const EdgeInsets.all(5),
+    );

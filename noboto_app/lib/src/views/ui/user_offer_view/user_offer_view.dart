@@ -55,7 +55,7 @@ class _BodyState extends State<Body> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: getProportionateScreenWidth(30)),
+            SizedBox(height: getProportionateScreenWidth(5)),
             MainProductCard(post: widget.post),
             SizedBox(height: getProportionateScreenWidth(30)),
             Column(
@@ -77,6 +77,7 @@ class _BodyState extends State<Body> {
                         widget.post.counteroffers!.length,
                         (index) => CounterofferCard(
                           counteroffer: widget.post.counteroffers![index],
+                          post: widget.post,
                           width: expandedCounteroffer ? 340 : 140,
                           aspectRatio: expandedCounteroffer ? 0.8 : 1.02,
                         ),

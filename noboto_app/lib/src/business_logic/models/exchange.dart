@@ -47,4 +47,19 @@ class Exchange {
 
     return data;
   }
+
+  int getStateNumber() {
+    switch (this.step) {
+      case "ACEPTADA":
+        return 1;
+      case "ESPERA_CONFIRMACION":
+        return 2;
+      case "EN_PROGRESO":
+        return 3;
+      case "FINALIZADO":
+        return 4;
+      default:
+        return 0;
+    }
+  }
 }
