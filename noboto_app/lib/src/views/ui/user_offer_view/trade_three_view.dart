@@ -6,17 +6,17 @@ import 'package:noboto_app/src/views/ui/user_offer_view/components/section_title
 import 'package:noboto_app/src/views/ui/user_view/user_view.dart';
 import 'package:noboto_app/src/views/utils/components/buttons.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
-import 'package:noboto_app/src/views/ui/user_offer_view/trade_three_view.dart';
+import 'package:noboto_app/src/views/ui/user_offer_view/trade_four_view.dart';
 
-class TradeS2View extends StatefulWidget {
+class TradeS3View extends StatefulWidget {
   final Exchange exchange;
 
-  const TradeS2View({Key? key, required this.exchange}) : super(key: key);
+  const TradeS3View({Key? key, required this.exchange}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _UserOfferView();
 }
 
-class _UserOfferView extends State<TradeS2View> {
+class _UserOfferView extends State<TradeS3View> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,31 +59,31 @@ class _BodyState extends State<Body> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: getProportionateScreenWidth(5)),
+            SizedBox(height: getProportionateScreenHeight(5)),
             MainTradeCard(
               exchange: widget.exchange,
               state: widget.exchange.getStateNumber(),
             ),
-            SizedBox(height: getProportionateScreenWidth(30)),
+            SizedBox(height: getProportionateScreenHeight(30)),
             SectionTitle(
               title: "Detalle de tu intercambio",
               seeMore: false,
               press: () {},
             ),
-            SizedBox(height: getProportionateScreenWidth(20)),
+            SizedBox(height: getProportionateScreenHeight(20)),
             ExchangeLocationCard(),
-            SizedBox(height: getProportionateScreenWidth(20)),
+            SizedBox(height: getProportionateScreenHeight(20)),
             ExchangeDateCard(),
-            SizedBox(height: getProportionateScreenWidth(20)),
-            BlueButtonWidget(
-              text: "Enviar detalles",
+            SizedBox(height: getProportionateScreenHeight(20)),
+            GrayButtonWidget(
+              text: "¡Ya he efectuado mi intercambio!",
               press: () {
-                widget.exchange.step = 'ESPERA_CONFIRMACION';
+                widget.exchange.step = 'EN_PROGRESO';
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          TradeS3View(exchange: widget.exchange)),
+                          TradeS4View(exchange: widget.exchange)),
                 );
               },
             ),

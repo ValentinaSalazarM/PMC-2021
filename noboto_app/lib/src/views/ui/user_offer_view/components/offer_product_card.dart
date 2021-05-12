@@ -18,7 +18,7 @@ class MainProductCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       padding: EdgeInsets.symmetric(
         horizontal: getProportionateScreenWidth(15),
-        vertical: getProportionateScreenHeight(15),
+        vertical: getProportionateScreenHeight(10),
       ),
       width: double.infinity,
       height: getProportionateScreenHeight(210),
@@ -91,7 +91,7 @@ class MainTradeCard extends StatelessWidget {
         vertical: getProportionateScreenHeight(15),
       ),
       width: double.infinity,
-      height: getProportionateScreenHeight(state == 4 ? 200 : 270),
+      height: getProportionateScreenHeight(state == 4 ? 230 : 270),
       decoration: BoxDecoration(
         color: Color(0xFFFAFAFA),
         borderRadius: BorderRadius.circular(20),
@@ -287,16 +287,13 @@ List<Widget> buildTradeCardText(Exchange exchange, int state) {
           padding: EdgeInsets.symmetric(vertical: 2),
           child: Text.rich(
             TextSpan(
-              text: '¡Pronto podrás disfrutar tu ', // default text style
+              text: '¡Pronto podrás \n disfrutar tu \n', // default text style
               children: <TextSpan>[
                 TextSpan(
-                  text: '${exchange.counteroffer!.product!.name}',
+                  text: '${exchange.counteroffer!.product!.name}!',
                   style: TextStyle(
                     color: Color(0xFF1F3A83),
                   ),
-                ),
-                TextSpan(
-                  text: ' días',
                 ),
               ],
             ),
@@ -316,7 +313,7 @@ List<Widget> buildTradeCardText(Exchange exchange, int state) {
           child: Text.rich(
             TextSpan(
               text:
-                  '¡A un solo paso de efectuar tu intercambio!', // default text style
+                  '¡A un solo paso de \n efectuar tu intercambio!', // default text style
             ),
             style: TextStyle(
               fontFamily: 'Metropolis',
@@ -334,7 +331,7 @@ List<Widget> buildTradeCardText(Exchange exchange, int state) {
           child: Text.rich(
             TextSpan(
               text:
-                  '¡Felicidades, has efectuado un intercambio!', // default text style
+                  '¡Felicidades, has \n efectuado un \n intercambio!', // default text style
             ),
             style: TextStyle(
               fontFamily: 'Metropolis',

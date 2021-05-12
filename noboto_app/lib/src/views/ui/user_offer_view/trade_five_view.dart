@@ -6,17 +6,17 @@ import 'package:noboto_app/src/views/ui/user_offer_view/components/section_title
 import 'package:noboto_app/src/views/ui/user_view/user_view.dart';
 import 'package:noboto_app/src/views/utils/components/buttons.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
-import 'package:noboto_app/src/views/ui/user_offer_view/trade_three_view.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class TradeS2View extends StatefulWidget {
+class TradeS5View extends StatefulWidget {
   final Exchange exchange;
 
-  const TradeS2View({Key? key, required this.exchange}) : super(key: key);
+  const TradeS5View({Key? key, required this.exchange}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _UserOfferView();
 }
 
-class _UserOfferView extends State<TradeS2View> {
+class _UserOfferView extends State<TradeS5View> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,35 +59,33 @@ class _BodyState extends State<Body> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: getProportionateScreenWidth(5)),
+            SizedBox(height: getProportionateScreenHeight(5)),
             MainTradeCard(
               exchange: widget.exchange,
               state: widget.exchange.getStateNumber(),
             ),
-            SizedBox(height: getProportionateScreenWidth(30)),
+            SizedBox(height: getProportionateScreenHeight(30)),
             SectionTitle(
               title: "Detalle de tu intercambio",
               seeMore: false,
               press: () {},
             ),
-            SizedBox(height: getProportionateScreenWidth(20)),
-            ExchangeLocationCard(),
-            SizedBox(height: getProportionateScreenWidth(20)),
-            ExchangeDateCard(),
-            SizedBox(height: getProportionateScreenWidth(20)),
+            SizedBox(height: getProportionateScreenHeight(20)),
+            _ratingBar(),
+            SizedBox(height: getProportionateScreenHeight(20)),
             BlueButtonWidget(
-              text: "Enviar detalles",
-              press: () {
-                widget.exchange.step = 'ESPERA_CONFIRMACION';
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          TradeS3View(exchange: widget.exchange)),
-                );
-              },
+              text: "Quiero otro intercambio",
+              press: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserView()),
+              ),
             ),
-            SizedBox(height: getProportionateScreenWidth(20)),
+            SizedBox(height: getProportionateScreenHeight(20)),
+            WhiteButtonWidget(
+              text: "Quiero reportar un inconveniente",
+              press: () {},
+            ),
+            SizedBox(height: getProportionateScreenWidth(10)),
           ],
         ),
       ),
@@ -259,4 +257,22 @@ class ExchangeLocationCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _ratingBar() {
+  return RatingBar.builder(
+    initialRating: 3,
+    minRating: 1,
+    direction: Axis.horizontal,
+    allowHalfRating: true,
+    itemCount: 5,
+    itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+    itemBuilder: (context, _) => Icon(
+      Icons.star,
+      color: Colors.amber,
+    ),
+    onRatingUpdate: (rating) {
+      print(rating);
+    },
+  );
 }
