@@ -21,7 +21,7 @@ class _PostListState extends State<PostList> {
             description:
                 "Busco cambiar este violín, nunca aprendí a tocarlo.\nEstá en perfecto estado.",
             imageUrls: [
-              "https://www.infobae.com/new-resizer/VOtEN56tRzz61mtQez3LJvsHy8U=/1200x628/filters:format(jpg):quality(85)//s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2016/12/24071604/violin-stradivarius-1920-3.jpg"
+              "https://i.imgur.com/W9pdRgB.jpg"
             ]),
         user: User(
             name: "Sara Gonzalez",
