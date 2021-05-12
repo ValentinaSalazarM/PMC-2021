@@ -22,13 +22,13 @@ class Product {
       this.imageUrls});
 
   Product.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as String;
-    name = json['name'] as String;
-    description = json['description'] as String;
-    category = json['category'] as String;
-    condition = json['condition'] as num;
-    price = json['price'] as num;
-    intrinsicValue = json['intrinsicValue'] as num;
+    id = (json['id'] as int).toString();
+    name = json['nombre'] as String;
+    description = json['descripcion'] as String;
+    category = json['categoria'] as String;
+    condition = int.parse(json['condicion'] as String);
+    price = double.parse(json['precio'] as String);
+    intrinsicValue =  double.parse(json['valorIntrinseco'] as String);
     if (json['imageUrls'] != null) {
       imageUrls = <String>[];
       json['imageUrls'].forEach((dynamic v) {

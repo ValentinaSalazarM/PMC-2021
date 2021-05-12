@@ -24,12 +24,12 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
-    nationalId = json['nationalId'] as String;
-    name = json['name'] as String;
-    email = json['email'] as String;
-    phone = json['phone'] as String;
-    profilePictureUrl = json['profilePictureUrl'] as String;
-    rating = json['rating'] as num;
+    nationalId = json['identificacion'] as String;
+    name = json['nombre'] as String;
+    email = json['correo'] as String;
+    phone = json['celular'] as String;
+    profilePictureUrl = json['imagen'] as String;
+    rating = double.parse(json['calificacion'] as String);
     if (json['preferredLocations'] != null) {
       preferredLocations = <Location>[];
       json['preferredLocations'].forEach((dynamic v) {

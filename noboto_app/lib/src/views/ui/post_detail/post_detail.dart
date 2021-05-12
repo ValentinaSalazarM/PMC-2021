@@ -113,9 +113,12 @@ class PostDetail extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: Text(
-              post.product.name!,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            child: SizedBox(
+              width: 225,
+              child: Text(
+                post.product.name!,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
           Row(
@@ -196,14 +199,14 @@ class PostDetail extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: Text(
-              post.want!,
+              post.want!=null?post.want!:"",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
               ),
             ),
           ),
-          Text(post.wantDescription!)
+          Text(post.wantDescription!=null?post.wantDescription!:"")
         ],
       ),
     );

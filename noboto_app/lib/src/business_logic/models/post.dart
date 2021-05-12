@@ -15,6 +15,10 @@ class Post {
   num? fairIndex;
   num? distance;
 
+  num? productId;
+  String? userId;
+  List<String>? imageUrls;
+
   Post({
     this.id,
     this.title,
@@ -29,15 +33,19 @@ class Post {
     this.recommended,
     this.fairIndex,
     this.distance,
+    this.productId,
+    this.userId,
+    this.imageUrls,
   });
 
   Post.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as String;
-    title = json['title'] as String;
-    publishedDate = dateTimeFromString(json['publishedDate'] as String);
-    active = json['active'] as bool;
-    want = json['want'] as String;
-    wantDescription = json['wantDescription'] as String;
+    id = (json['id'] as int).toString();
+    title = json['titulo'] as String;
+    publishedDate = dateTimeFromString(json['fecha'] as String);
+    active = json['active'] as bool?;
+    want = json['contraofertaDeseada'] as String?;
+    wantDescription = json['descripcionContaoferta'] as String?;
+    productId = json['objeto_id'] as num;
     product = json['object'] != null
         ? Product.fromJson(json['object'] as Map<String, dynamic>)
         : Product();
@@ -47,6 +55,7 @@ class Post {
         locations!.add(Location.fromJson(v as Map<String, dynamic>));
       });
     }
+    userId = json['usuario_id'] as String;
     user = json['user'] != null
         ? User.fromJson(json['user'] as Map<String, dynamic>)
         : null;
@@ -60,6 +69,14 @@ class Post {
       recommended = <Post>[];
       json['recommended'].forEach((dynamic v) {
         recommended!.add(Post.fromJson(v as Map<String, dynamic>));
+      });
+    }
+
+    if (json['imagenes'] != null) {
+      imageUrls = <String>[];
+      json['imagenes'].forEach((dynamic v) {
+        var image = v as Map<String, dynamic>;
+        imageUrls!.add(image['ruta']);
       });
     }
   }

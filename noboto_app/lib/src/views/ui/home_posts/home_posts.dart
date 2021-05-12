@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:noboto_app/src/business_logic/models/models.dart';
+import 'package:noboto_app/src/business_logic/services/post_services.dart';
 import 'package:noboto_app/src/views/ui/home_posts/components/categories.dart';
 import 'package:noboto_app/src/views/ui/home_posts/components/home_header.dart';
 import 'package:noboto_app/src/views/ui/home_posts/components/post_list.dart';
@@ -44,7 +46,22 @@ class _HomePostsState extends State<HomePosts> {
       ),
       backgroundColor: Colors.white,
       body: Column(
-        children: [HomeHeader(), Categories(), PostList()],
+        children: [
+          HomeHeader(),
+          Categories(),
+          FutureBuilder(
+              future: fetchPosts(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return PostList(snapshot.data as List<Post>);
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.stackTrace}" + "${snapshot.error}");
+                }
+
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              })
+        ],
       ),
     );
   }

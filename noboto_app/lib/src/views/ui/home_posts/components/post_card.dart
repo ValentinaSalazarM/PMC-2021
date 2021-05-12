@@ -38,7 +38,7 @@ class PostCard extends StatelessWidget {
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error)),
             ),
-            Row(
+              Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
@@ -48,13 +48,19 @@ class PostCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        post.product.name!,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                      SizedBox(
+                        width: 225,
+                        child: Text(
+                          post.product.name!,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          softWrap: false,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
                       ),
                       Row(
-                        children: [Icon(Icons.sync_alt), Text(post.want!)],
+                        children: [Icon(Icons.sync_alt), Text(post.want!=null?post.want!:"")],
                       ),
                       Row(
                         children: [Icon(Icons.place), Text("500 m de Casa")],
