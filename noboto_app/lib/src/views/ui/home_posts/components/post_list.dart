@@ -10,14 +10,35 @@ class PostList extends StatefulWidget {
 class _PostListState extends State<PostList> {
   List<Post> posts = [
     Post(
+        id: "0",
+        active: true,
+        want: "Libro",
+        wantDescription:
+            "Me gusta leer y pintar.\nMe sirve cualquier cosa para mis hobbies.",
+        product: Product(
+            id: "1",
+            name: "Violín",
+            description:
+                "Busco cambiar este violín, nunca aprendí a tocarlo.\nEstá en perfecto estado.",
+            imageUrls: [
+              "https://www.infobae.com/new-resizer/VOtEN56tRzz61mtQez3LJvsHy8U=/1200x628/filters:format(jpg):quality(85)//s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2016/12/24071604/violin-stradivarius-1920-3.jpg"
+            ]),
+        user: User(
+            name: "Sara Gonzalez",
+            profilePictureUrl:
+                "https://cdn2.salud180.com/sites/default/files/styles/medium/public/field/image/2020/03/estas_son_las_caracteristicas_que_vuelven_a_una_mujer_irresistible_segun_ellos.jpg",
+            rating: 3.5)),
+    Post(
         id: "1",
         active: true,
         want: "Libro",
-        wantDescription: "Negociable, pero me gustaría un libro, ojalá de ficción",
+        wantDescription:
+            "Negociable, pero me gustaría un libro, ojalá de ficción",
         product: Product(
             id: "1",
             name: "Libro de La Peste",
-            description: "Busco cambiar este libro por otro libro. Está como nuevo, realmente me lo regalaron y ya tenía una copia \n Edición: Debolsillo",
+            description:
+                "Busco cambiar este libro por otro libro. Está como nuevo, realmente me lo regalaron y ya tenía una copia \n Edición: Debolsillo",
             imageUrls: [
               "https://1.bp.blogspot.com/-NwxXKFhXQX4/WK922_LuoaI/AAAAAAAAC8Q/LbCfS2HqStA7TMVgjKDekmobS9IBv_rHQCLcB/s1600/DSC00346.jpg"
             ]),
@@ -43,7 +64,6 @@ class _PostListState extends State<PostList> {
             profilePictureUrl:
                 "https://i.pinimg.com/474x/30/5b/e5/305be5ff3b0b81253090c017dadc0d7a.jpg",
             rating: 3.5))
-
   ];
   @override
   Widget build(BuildContext context) {

@@ -74,13 +74,17 @@ class User {
 
 User userDemo = User(
   nationalId: '12345678',
-  name: 'Sara',
-  email: 'Lopez',
+  name: 'Sara Gonzalez',
+  email: 'sg@gmail.com',
   phone: '3120983476',
-  profilePictureUrl: 'assets/images/example_user_profile_pic.jpg',
+  profilePictureUrl:
+      'https://cdn2.salud180.com/sites/default/files/styles/medium/public/field/image/2020/03/estas_son_las_caracteristicas_que_vuelven_a_una_mujer_irresistible_segun_ellos.jpg',
   rating: 3.5,
   preferredLocations: <Location>[],
-  posts: <Post>[demoPost, Post(product: demoProducts[1])],
+  posts: <Post>[
+    demoPost,
+    Post(product: demoProducts[1]),
+  ],
   counteroffers: [
     Counteroffer(product: demoProducts[2]),
   ],

@@ -19,7 +19,10 @@ class ProfilePic extends StatelessWidget {
       width: getProportionateScreenWidth(width),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(300.0),
-        child: Image.asset(asset),
+        child: Image(
+          image: AssetImage(asset),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

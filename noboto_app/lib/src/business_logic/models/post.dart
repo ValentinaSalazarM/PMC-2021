@@ -91,18 +91,22 @@ class Post {
 
 Post demoPost = Post(
   id: '1',
-  title: 'Control de PS4',
+  title: 'Violín',
   publishedDate: dateTimeFromString('2021-05-01'),
   active: true,
+  want: "Libro",
+  wantDescription:
+      "Me gusta leer y pintar.\nMe sirve cualquier cosa para mis hobbies.",
   product: Product(
     id: '1',
-    name: 'Control de PS4',
-    description: 'Dualshock 4 en perfecto estado',
-    category: 'Videojuegos',
-    condition: 4,
+    name: 'Violín',
+    description:
+        'Busco cambiar este violín, nunca aprendí a tocarlo.\nEstá en perfecto estado.',
+    category: 'Musica',
+    condition: 3,
     price: 150000,
     intrinsicValue: 130000,
-    imageUrls: ["assets/images/image_popular_product_1.png"],
+    imageUrls: ["assets/images/product_violin.jpg"],
   ),
   locations: [
     Location(id: '1', name: 'Casa', latitude: 4.643469, longitude: -74.056975),

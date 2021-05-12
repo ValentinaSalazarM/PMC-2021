@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:noboto_app/src/business_logic/models/models.dart';
 import 'package:noboto_app/src/views/ui/user_offer_view/user_offer_view.dart';
@@ -39,7 +40,7 @@ class _UserView extends State<UserView> {
 
 class Body extends StatelessWidget {
   final rating = 3.5;
-  final name = 'Camila';
+  final name = 'Sara';
   @override
   Widget build(BuildContext context) {
     final user = userDemo;
@@ -47,13 +48,13 @@ class Body extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            ProfilePic(),
+            ProfilePic(imageUrl: user.profilePictureUrl!),
             SizedBox(height: getProportionateScreenWidth(15)),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "¡Hola ${user.name}!",
+                  "¡Hola $name!",
                   style: TextStyle(
                     fontFamily: 'Metropolis',
                     fontWeight: FontWeight.w700,
@@ -156,7 +157,13 @@ class ProductCard extends StatelessWidget {
                       color: kSecondaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Image.asset(post.product.imageUrls![0]),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image(
+                        image: AssetImage(post.product.imageUrls![0]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   )),
               const SizedBox(height: 5),
               Text(
@@ -240,10 +247,15 @@ class SectionTitleUser extends StatelessWidget {
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: Row(
         children: [
-          Text(text,
-              style: TextStyle(
-                  fontSize: getProportionateScreenWidth(18),
-                  color: Colors.black)),
+          Text(
+            text,
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(18),
+              color: Colors.black,
+              fontFamily: 'Metropolis',
+              fontWeight: FontWeight.w800,
+            ),
+          ),
         ],
       ),
     );
@@ -279,7 +291,9 @@ class ProfileMenuItem extends StatelessWidget {
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
     Key? key,
+    required this.imageUrl,
   }) : super(key: key);
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -287,8 +301,7 @@ class ProfilePic extends StatelessWidget {
       height: 115,
       width: 115,
       child: CircleAvatar(
-        backgroundImage:
-            AssetImage("assets/images/example_user_profile_pic.jpg"),
+        backgroundImage: CachedNetworkImageProvider(imageUrl),
       ),
     );
   }
