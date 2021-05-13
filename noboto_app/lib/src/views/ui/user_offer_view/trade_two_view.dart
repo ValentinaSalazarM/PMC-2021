@@ -7,6 +7,7 @@ import 'package:noboto_app/src/views/ui/user_view/user_view.dart';
 import 'package:noboto_app/src/views/utils/components/buttons.dart';
 import 'package:noboto_app/src/views/utils/size_config.dart';
 import 'package:noboto_app/src/views/ui/user_offer_view/trade_three_view.dart';
+import 'package:noboto_app/src/views/ui/maps_add_address.dart';
 
 class TradeS2View extends StatefulWidget {
   final Exchange exchange;
@@ -218,7 +219,7 @@ class ExchangeLocationCard extends StatelessWidget {
             child: Image(
               image: AssetImage('assets/images/map_mock.png'),
               height: getProportionateScreenHeight(130),
-              width: getProportionateScreenHeight(130),
+              width: getProportionateScreenHeight(117),
               fit: BoxFit.cover,
             ),
           ),
@@ -249,7 +250,14 @@ class ExchangeLocationCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Icon(CupertinoIcons.chevron_right)
+                    IconButton(
+                      icon: const Icon(CupertinoIcons.chevron_right),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MapAddAddress()),
+                      ),
+                    ),
                   ],
                 ),
               ],

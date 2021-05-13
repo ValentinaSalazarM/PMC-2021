@@ -33,7 +33,7 @@ class _GoogleMapScreenState extends State<MapAddAddress> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_rounded),
             tooltip: 'Atrás',
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pop(),
           ),
         ),
         body: Stack(children: [
@@ -86,7 +86,7 @@ class _GoogleMapScreenState extends State<MapAddAddress> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50.0)),
                       ),
-                      onPressed: () {},
+                      onPressed: () => Navigator.of(context).pop(),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text("Guardar"),
