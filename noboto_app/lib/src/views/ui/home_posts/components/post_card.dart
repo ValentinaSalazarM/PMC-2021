@@ -32,7 +32,7 @@ class PostCard extends StatelessWidget {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: imageProvider,
-                                alignment: FractionalOffset.topCenter,
+                                alignment: FractionalOffset.center,
                                 fit: BoxFit.cover)),
                       ),
                   placeholder: (context, url) => CircularProgressIndicator(),
